@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.views import View
 from xhtml2pdf import pisa
+from datetime import date
 
 def render_to_pdf(template_src, context_dict={}):
 	template = get_template(template_src)
@@ -16,16 +17,16 @@ def render_to_pdf(template_src, context_dict={}):
 
 
 data = {
-	"company": "Dennnis Ivanov Company",
-	"address": "123 Street name",
-	"city": "Vancouver",
-	"state": "WA",
-	"zipcode": "98663",
+	"company": "XXXXXXXXXXXXXXXXXX",
+	"address": "XXX - XXX, XXX XXX",
+	"city": "XXXXXXXXXXXXXXXX",
+	"state": "XX",
+	"zipcode": "xxxxx",
 
 
-	"phone": "555-555-2345",
-	"email": "youremail@dennisivy.com",
-	"website": "dennisivy.com",
+	"phone": "xxx-xxx-xxxx",
+	"email": "yxxxxx@gmail.com",
+	"website": "xxxxxxxxxxxxxxxx.com",
 	}
 
 #Opens up page as PDF
@@ -43,8 +44,9 @@ class DownloadPDF(View):
 		pdf = render_to_pdf('app/pdf_template.html', data)
 
 		response = HttpResponse(pdf, content_type='application/pdf')
-		filename = "Invoice_%s.pdf" %("12341231")
-		content = "attachment; filename='%s'" %(filename)
+		today = date.today()
+		filename = "Invoice_%s.pdf" %(today)
+		content = "attachment; filename=%s" %(filename)
 		response['Content-Disposition'] = content
 		return response
 

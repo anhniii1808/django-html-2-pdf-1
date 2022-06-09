@@ -1,0 +1,9 @@
+body{
+    background-color: #764ba2;
+}
+
+.card{
+    background-color: #fff;
+    padding: 50px 50px 50px 50px;
+    margin:50px;
+}
